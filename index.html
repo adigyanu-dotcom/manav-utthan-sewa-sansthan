@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Manav Utthan Seva Sansthan</title>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      background: url('https://infinitylearn.com/surge/wp-content/uploads/2023/12/map-of-bihar-copy.jpg') center center/cover no-repeat fixed;
+      color: #253c4e;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(34, 163, 159, 0.17);
+      pointer-events: none;
+      z-index: 0;
+    }
+    header {
+      background: url('https://www.memeraki.com/cdn/shop/articles/map_final_1200x1200.jpg?v=1707453671') center center/cover no-repeat;
+      padding: 48px 0 32px 0;
+      text-align: center;
+      position: relative;
+      min-height: 210px;
+      z-index: 3;
+      border-radius: 0 0 20px 20px;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.33);
+      z-index: 1;
+      border-radius: 0 0 20px 20px;
+    }
+    header h1,
+    header p {
+      position: relative;
+      z-index: 2;
+      color: #2e8b57;
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0 0 0.15em 0;
+    }
+    header p {
+      font-size: 1.35em;
+      font-weight: 400;
+      margin: 0;
+    }
+    /* Swachh Bharat image positioning */
+    .header-image-left,
+    .header-image-right {
+      position: absolute;
+      top: 20px;
+      z-index: 3;
+      max-width: 180px;
+      height: auto;
+      opacity: 0.95;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .header-image-left {
+      left: 20px;
+    }
+    .header-image-right {
+      right: 20px;
+    }
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+      .header-image-left,
+      .header-image-right {
+        max-width: 100px;
+        top: 10px;
+      }
+      .header-image-left {
+        left: 10px;
+      }
+      .header-image-right {
+        right: 10px;
+      }
+      header h1 {
+        font-size: 2em;
+      }
+      header p {
+        font-size: 1em;
+      }
+    }
+    nav {
+      background: #22a39feb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 9px;
+      font-weight: 700;
+      font-size: 0.95em;
+      transition: background 0.2s;
+      border-radius: 3px;
+      font-family: 'Merriweather', serif;
+      margin: 0 0.5px;
+      white-space: nowrap;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #156064;
+    }
+    .container {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 24px;
+      background: #fffdeffc;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(34, 163, 159, 0.06);
+      min-height: 350px;
+      position: relative;
+      z-index: 2;
+    }
+    h2 {
+      color: #156064;
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 18px;
+      font-family: 'Merriweather', serif;
+    }
+    .dignitaries-list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    .dignitary-card {
+      display: flex;
+      align-items: center;
+      background: #f8fafb;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(34,163,159,0.06);
+      padding: 8px 20px 8px 8px;
+      margin-right: 10px;
+    }
+    .dignitary-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 14px;
+      border: 2px solid #156064;
+    }
+    .dignitary-role {
+      font-weight: 700;
+      font-size: 1em;
+      color: #156064;
+    }
+    .dignitary-name {
+      font-size: 1em;
+      margin-bottom: 4px;
+    }
+    footer {
+      background: #253c4ef2;
+      color: #eaf6f6;
+      text-align: center;
+      padding: 16px 0;
+      margin-top: 34px;
+      font-size: 0.9em;
+      font-family: 'Merriweather', serif;
+      border-radius: 20px 20px 0 0;
+      z-index: 2;
+      position: relative;
+    }
+    footer img {
+      display: block;
+      margin: 10px auto 0 auto;
+      max-width: 120px;
+      opacity: 0.85;
+      border-radius: 8px;
+    }
+    p {
+      font-size: 1.18em;
+      line-height: 1.7em;
+    }
+    .location-block {
+      margin-bottom: 12px;
+    }
+    .legal-doc-img {
+      display: block;
+      margin: 28px auto 0 auto;
+      max-width: 96%;
+      box-shadow: 0 2px 16px rgba(34, 163, 159, 0.12);
+      border-radius: 12px;
+    }
+  </style>
+  <script>
+    function showPage(page) {
+      var sections = document.querySelectorAll('.page-section');
+      sections.forEach(function (sec) { sec.style.display = 'none'; });
+      var navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(function (link) { link.classList.remove('active'); });
+      document.getElementById(page).style.display = 'block';
+      document.getElementById('nav-' + page).classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      showPage('home');
+      var navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          showPage(this.getAttribute('data-page'));
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <img src="https://static.india.com/wp-content/uploads/2017/10/Swachh-Bharat-Diwas.jpg" alt="Swachh Bharat" class="header-image-left">
+    <img src="https://static.india.com/wp-content/uploads/2017/10/Swachh-Bharat-Diwas.jpg" alt="Swachh Bharat" class="header-image-right">
+    <h1>Manav Utthan Seva Sansthan</h1>
+    <p>Voluntary Organisation Working Across India</p>
+  </header>
+  <nav>
+    <a href="#" id="nav-home" data-page="home" class="active">Home</a>
+    <a href="#" id="nav-services" data-page="services">Our Services</a>
+    <a href="#" id="nav-activities" data-page="activities">Activities of the Institution</a>
+    <a href="#" id="nav-dignitaries" data-page="dignitaries">Company Dignitaries</a>
+    <a href="#" id="nav-member" data-page="member">Become a Member</a>
+    <a href="#" id="nav-photos" data-page="photos">Photos Gallery</a>
+    <a href="#" id="nav-locations" data-page="locations">Our Locations</a>
+    <a href="#" id="nav-newsletter" data-page="newsletter">News Letter and updates</a>
+    <a href="#" id="nav-legal" data-page="legal">Our Legal Framework</a>
+    <a href="#" id="nav-contact" data-page="contact">Contact Us</a>
+  </nav>
+  <div class="container">
+    <section id="home" class="page-section">
+      <h2>Welcome!</h2>
+      <p>
+Welcome to Manav Utthan Seva Sansthan (Human Uplift Service Organization)<br><br>
+Manav Utthan Seva Sansthan (MUSS) is a dedicated non-profit organization committed to the holistic development and empowerment of communities. <br><br>Registered under Societies Registration Act 21, 1860, we operate with a mission to drive social change and uplift the underprivileged through targeted initiatives and sustainable programs.<br>
+We were Established on 26th of May 2014, Registration Number 88/14-05. <br><br>
+      </p>
+    </section>
+    <section id="services" class="page-section" style="display:none">
+      <h2>Our Services</h2>
+      <p>
+        MUS plays a vital role in maintaining the cleanliness and safety of our municipalities. As an active participant in the Swachh Bharat Abhiyan, we are committed to creating cleaner, healthier communities through efficient waste management and sanitation solutions.<br><br>
+        Our Services<br><br>
+        We offer a comprehensive range of municipal support services, including:<br><br>
+        Door-to-Door Waste Collection &amp; Management<br>
+        – Conducted in full compliance with municipal guidelines to ensure hygienic waste disposal.<br><br>
+        Supply of Sanitation Materials<br>
+        – Provision of essential cleaning agents such as industrial limestone and bleaching powder.<br><br>
+        Provision of Cleaning Equipment<br>
+        – Supply of tools and utilities like brooms, compactors, waste bins, and containers.<br><br>
+        Garbage Transportation<br>
+        – Reliable transportation of waste using dedicated trucks and tractors.<br><br>
+        Our Mission<br><br>
+        Beyond sanitation, MUS is deeply committed to rural development and social upliftment. Our workforce primarily consists of individuals from underprivileged communities, offering them meaningful employment opportunities and a path to a better livelihood.<br>
+      </p>
+    </section>
+    <section id="activities" class="page-section" style="display:none">
+      <h2>Activities of the Institution</h2>
+      <p>
+        MUS is the major contributor in keeping our municipality safe and clean. We are one of the key member of Swaksh Bharat Abhiyan and are dedicated to make sure our Municipalities are clean.<br><br>
+        Our Services include: <br><br>
+        1. Door to Door Waste Collection and Management as per Municipality Guidelines <br>
+        2. Supply of Proper Waste and Cleaning Materials like Industrial Lime Stone and Bleaching Powder<br>
+        3. Supply of Cleaning utilities like Broom, compactors, and containers<br>
+        4. Garbage transportation using trucks and tractors <br><br>
+        We are dedicated in providing and uplifting of rural development of the poor section of society. Our entire team consists of underprivileged people, who can benefit from the getting a proper employment. <br>
+      </p>
+    </section>
+    <section id="dignitaries" class="page-section" style="display:none">
+      <h2>Company Dignitaries</h2>
+      <div class="dignitaries-list">
+        <div class="dignitary-card">
+          <img src="Dileep_Kumar.jpg" alt="Dileep Kumar photo">
+          <div>
+            <div class="dignitary-name">Vinod Kumar Verma</div>
+            <div class="dignitary-role">President</div>
+          </div>
+        </div>
+        <div class="dignitary-card">
+          <div>
+            <div class="dignitary-name">Pankaj Kumar Verma</div>
+            <div class="dignitary-role">Sacheev</div>
+          </div>
+        </div>
+        <div class="dignitary-card">
+          <div>
+            <div class="dignitary-name">Praveen Kumar</div>
+            <div class="dignitary-role">Koshadhaykasha</div>
+          </div>
+        </div>
+        <div class="dignitary-card">
+          <div>
+            <div class="dignitary-name">Smt. Bindiya Devi</div>
+            <div class="dignitary-role">Member</div>
+          </div>
+        </div>
+        <div class="dignitary-card">
+          <div>
+            <div class="dignitary-name">Jitendra Kumar</div>
+            <div class="dignitary-role">Member</div>
+          </div>
+        </div>
+        <div class="dignitary-card">
+          <div>
+            <div class="dignitary-name">Aditya Kumar</div>
+            <div class="dignitary-role">Member</div>
+          </div>
+        </div>
+        <div class="dignitary-card">
+          <div>
+            <div class="dignitary-name">Vishvajeet Singh</div>
+            <div class="dignitary-role">Member</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- New Become a Member Tab Section -->
+    <section id="member" class="page-section" style="display:none">
+      <h2>Become a Member &amp; Fee Structure</h2>
+      <p>
+        Manav Utthan Seva Sansthan welcomes individuals who are passionate about social change to join our mission. Becoming a member allows you to actively participate in our initiatives and contribute to the community's upliftment.
+      </p>
+      <h3>Membership Fee Details</h3>
+      <p>
+        The organization has a straightforward and accessible membership fee structure, designed to encourage widespread participation. The details, as referenced in our documents, are as follows:
+      </p>
+      <ul>
+        <li>General Membership Fee: The fee for becoming a member is ₹ 25/ (Twenty-Five Rupees Only).</li>
+        <li>Annual Subscription: In addition to the one-time membership fee, there is a modest annual subscription of ₹ 3/ (Three Rupees Only) to maintain active membership status.</li>
+      </ul>
+      <h3>How to Become a Member?</h3>
+      <ol>
+        <li>Filling out an Application Form: Providing your personal details and expressing your interest in joining.</li>
+        <li>Payment of Fees: Submitting the one-time membership fee of ₹ 25/ along with the annual subscription.</li>
+        <li>Approval Process: The application is then reviewed and approved by the governing body of the Sansthan as per its bylaws.</li>
+      </ol>
+      <p>
+        Upon successful enrollment, members are formally recognized and can participate in the organization's activities and governance, as outlined in our rules and regulations.
+      </p>
+    </section>
+    <section id="photos" class="page-section" style="display:none">
+      <h2>Photos Gallery</h2>
+      <p>
+        Explore our photo and video gallery showcasing the impactful work done by MUS across various programs and regions.
+      </p>
+    </section>
+    <section id="locations" class="page-section" style="display:none">
+      <h2>Our Locations</h2>
+      <div class="location-block">
+        मानव उत्थान सेवा संस्थान, बिहार<br>
+      </div>
+      <div class="location-block">
+        Village - In front of Hanuman Mandier, Goria Patti, Thana Bagaha, Jila - West Champaran, Pin - 845101 - Bihar
+      </div>
+    </section>
+    <section id="newsletter" class="page-section" style="display:none">
+      <h2>News Letter and updates</h2>
+      <p>
+        Stay up to date with the latest news, newsletters and updates from Manav Utthan Seva Sansthan, including recent projects, upcoming events, and organizational announcements.
+      </p>
+    </section>
+    <section id="legal" class="page-section" style="display:none">
+      <h2>Our Legal Framework</h2>
+      <p>
+        Manav Utthan Seva Sansthan is a formally recognized entity, duly registered under the following statutes, which govern our operations and ensure transparency and accountability:<br>
+        <br>
+        1. Societies Registration Act 21, 1860: This is our primary registration, establishing us as a formal non-profit society.<br>
+        2. Indian Stamp Act: This registration authorizes us to deal in non-judicial stamp papers and other related fiscal documents.<br>
+      </p>
+      <img src="legal-registration.jpg" class="legal-doc-img" alt="Registration Certificate of MUS">
+    </section>
+    <section id="contact" class="page-section" style="display:none">
+      <h2>Contact Us</h2>
+      <p>
+        Contact details, enquiry forms, and office information for Manav Utthan Seva Sansthan will be available here for outreach and support.
+      </p>
+    </section>
+  </div>
+  <footer>
+    &copy; 2025 Manav Utthan Seva Sansthan. All Rights Reserved.
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Bihar_district_map.png" alt="Bihar Map">
+  </footer>
+</body>
+</html>
